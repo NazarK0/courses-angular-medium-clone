@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "medium-clone"
+  "defaultProject": "medium-clone",
+  "cli": {
+    "analytics": "17cc28e8-2a4b-496f-ad19-78f1415a872b"
+  }
 }
