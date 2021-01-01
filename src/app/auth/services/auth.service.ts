@@ -8,7 +8,7 @@ import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface
 import { RegisterRequestInterface } from './../types/registerRequest.interface';
 
 @Injectable()
-export class AuthSevice {
+export class AuthService {
   constructor(private http: HttpClient){}
 
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {

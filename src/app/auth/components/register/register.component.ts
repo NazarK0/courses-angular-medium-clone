@@ -1,5 +1,6 @@
+import { RegisterRequestInterface } from './../../types/registerRequest.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
-import { AuthSevice } from './../../services/auth.service';
+import { AuthService } from './../../services/auth.service';
 import { isSubmittingSelector } from './../../store/selectors';
 import { registerAction } from './../../store/actions/register.action';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   isSubmitting$: Observable<boolean>;
 
-  constructor(private fb: FormBuilder, private store: Store, private authService: AuthSevice) {}
+  constructor(private fb: FormBuilder, private store: Store, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -40,8 +41,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.store.dispatch(registerAction(this.form.value));
-    this.authService.register(this.form.value)
-      .subscribe((currentUser: CurrentUserInterface) => { console.log(currentUser, 'currentUser')} );
+    const request: RegisterRequestInterface = {
+      user: this.form.value,
+    };
+
+    this.store.dispatch(registerAction({ request }));
   }
 }
