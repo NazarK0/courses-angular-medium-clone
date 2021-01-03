@@ -21,7 +21,10 @@ export class RegisterComponent implements OnInit {
   isSubmitting$: Observable<boolean> = new Observable();
   backendErrors$: Observable<BackendErrorsInterface | null> = new Observable();
 
-  constructor(private fb: FormBuilder, private store: Store, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();

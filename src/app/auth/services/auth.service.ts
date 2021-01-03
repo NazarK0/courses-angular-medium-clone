@@ -1,4 +1,4 @@
-import { LoginRequesInterface } from './../types/loginRequest.interface';
+import { LoginRequestInterface } from './../types/loginRequest.interface';
 import { AuthResponseInterface } from './../types/authResponse.interface';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -24,7 +24,7 @@ export class AuthService {
       .pipe(map(this.getUser));
   }
 
-  login(data: LoginRequesInterface): Observable<CurrentUserInterface> {
+  login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
     const url = `${environment.apiUrl}/users/login`;
 
     return this.http
