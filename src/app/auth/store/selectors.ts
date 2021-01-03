@@ -1,3 +1,4 @@
+import { CurrentUserInterface } from './../../shared/types/currentUser.interface';
 import { BackendErrorsInterface } from './../../shared/types/backendErrors.interface';
 import { AuthStateInterface } from './../types/authState.interface';
 import { AppStateInterface } from './../../shared/types/appState.interface';
@@ -17,3 +18,18 @@ export const validationErrorsSelector: MemoizedSelector<AppStateInterface, Backe
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.validationErrors
 );
+
+export const isLoggedInSelector: MemorizedSelector<AppStateInterface, boolean> = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.isLoggedIn
+);
+
+export const isAnonymousSelector: MemoizedSelector<AppStateInterface, boolean> = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.isLoggedIn === false
+)
+
+export const currentUserSelector: MemoizedSelector<AppStateInterface, CurrentUserInterface | null> = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.currentUser
+)
