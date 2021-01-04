@@ -1,3 +1,4 @@
+import { AppStateInterface } from './../../../shared/types/appState.interface';
 import { loginAction } from './../../store/actions/login.action';
 import { LoginRequestInterface } from './../../types/loginRequest.interface';
 import { isSubmittingSelector, validationErrorsSelector } from './../../store/selectors';
