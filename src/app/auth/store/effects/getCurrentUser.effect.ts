@@ -1,5 +1,5 @@
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { getCurrentUserAction, getCurrentUserSuccessAction, getCurrentUserFailureAction } from './../actions/getCurrentUser.action';
 import { PersistanceService } from './../../../shared/services/persistance.service';
 import { AuthService } from './../../services/auth.service';
@@ -19,17 +19,19 @@ export class GetCurrentUserEffect {
     .pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
-        const token = this.persistanceService.get('accesToken');
+        const token = this.persistanceService.get('accessToken');
 
-        if(!token) {
+        if (!token) {
           return of(getCurrentUserFailureAction());
         }
 
         return this.authService
           .getCurrentUser()
-          .pipe((currentUser: CurrentUserInterface) => getCurrentUserSuccessAction({ currentUser }))
+          .pipe(
+            map((currentUser: CurrentUserInterface) => getCurrentUserSuccessAction({ currentUser })),
+            catchError(() => of(getCurrentUserFailureAction()))
+          );
       })
-    ),
-      catchError(() => of(getCurrentUserFailureAction()))
+    )
   );
 }
