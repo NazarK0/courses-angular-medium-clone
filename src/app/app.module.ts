@@ -1,3 +1,4 @@
+import { GlobalFeedModule } from './globalFeed/globalFeed.module';
 import { AuthInterseptor } from './shared/services/authinterseptor.service';
 import { PersistanceService } from './shared/services/persistance.service';
 import { TopBarModule } from './shared/modules/topBar/topBar.module';
@@ -26,6 +27,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     TopBarModule,
+    GlobalFeedModule,
   ],
   providers: [
     PersistanceService,
