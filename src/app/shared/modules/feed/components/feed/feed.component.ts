@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
-  @Input('apiUrl') apiUrlProps: string = '';
+  @Input('apiUrl') apiUrlProps: string;
 
   isLoading$: Observable<boolean> = new Observable();
   error$: Observable<string | null> = new Observable();
