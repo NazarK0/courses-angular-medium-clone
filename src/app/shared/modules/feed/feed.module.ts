@@ -1,3 +1,4 @@
+import { PaginationModule } from './../pagination/pagination.module';
 import { LoadingModule } from './../loading/loading.module';
 import { ErrorMessageModule } from './../errorMessage/errorMessage.module';
 import { RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ import { reducers } from './store/reducers';
     RouterModule,
     ErrorMessageModule,
     LoadingModule,
+    PaginationModule,
   ],
   declarations: [FeedComponent],
   providers: [FeedService],
