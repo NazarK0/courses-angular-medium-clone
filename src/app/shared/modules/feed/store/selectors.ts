@@ -7,17 +7,17 @@ export const feedFeatureSelector = createFeatureSelector<
   FeedStateInterface
 >('feed');
 
-export const isLoadingSelector: MemorizedSelector<AppStateInterface, boolean> = createSelector(
+export const isLoadingSelector: MemoizedSelector<AppStateInterface, boolean> = createSelector(
   feedFeatureSelector,
   (feedState: FeedStateInterface) => feedState.isLoading
 );
 
-export const errorSelector: MemorizedSelector<AppStateInterface, string | null> = createSelector(
+export const errorSelector: MemoizedSelector<AppStateInterface, string | null> = createSelector(
   feedFeatureSelector,
   (feedState: FeedStateInterface) => feedState.error
 );
 
-export const feedSelector: MemoizedSelector<AppStateInterfaces, GetFeedResponseInterface | null> = createSelector(
+export const feedSelector: MemoizedSelector<AppStateInterface, GetFeedResponseInterface | null> = createSelector(
   feedFeatureSelector,
   (feedState: FeedStateInterface) => feedState.data
 );

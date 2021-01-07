@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class GlobalFeedComponent {
   apiUrl = '/articles';
+  popularTags = ['tag1', 'tag2', 'tag22'];
 }
