@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { Input, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { parseUrl, stringify } from 'query-string';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -39,8 +40,17 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.baseUrl = this.router.url.split('?')[0];
   }
 
-  fetchData(): void {
-    this.store.dispatch(getFeedAction({ url: this.apiUrlProps }));
+  fetchFeed(): void {
+    const offset = this.currentPage * this.limit - this.limit;
+    const parsedUrl = parseUrl(this.apiUrlProps);
+    const stringifiedParams = stringify({
+      limit: this.limit,
+      offset,
+      ...parsedUrl.query,
+    });
+    const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+
+    this.store.dispatch(getFeedAction({ url: apiUrlWithParams }));
   }
 
   initializeListeners(): void {
@@ -48,12 +58,12 @@ export class FeedComponent implements OnInit, OnDestroy {
       .queryParams
       .subscribe((params: Params) => {
         this.currentPage = Number(params.page || '1') ;
+        this.fetchFeed();
       });
   }
 
   ngOnInit(): void {
     this.initializeValues();
-    this.fetchData();
     this.initializeListeners();
   }
 
