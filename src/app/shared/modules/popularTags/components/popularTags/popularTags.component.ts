@@ -12,8 +12,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PopularTagsComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
-  @Input('tags') popularTagsProps: PopularTagType[] = [];
-
   popularTags$: Observable<PopularTagType[] | null> = new Observable<PopularTagType[] | null>();
   isLoading$: Observable<boolean> = new Observable<boolean>();
   error$: Observable<string | null> = new Observable<string | null>();
