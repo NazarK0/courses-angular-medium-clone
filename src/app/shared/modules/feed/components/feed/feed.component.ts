@@ -4,7 +4,7 @@ import { GetFeedResponseInterface } from './../../types/getFeedResponse.interfac
 import { Observable, Subscription } from 'rxjs';
 import { getFeedAction } from './../../store/actions/getFeed.action';
 import { Store, select } from '@ngrx/store';
-import { Input, OnInit, OnDestroy } from '@angular/core';
+import { Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { parseUrl, stringify } from 'query-string';

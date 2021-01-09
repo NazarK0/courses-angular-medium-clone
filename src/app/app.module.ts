@@ -1,3 +1,4 @@
+import { ArticleModule } from './article/article.module';
 import { TagFeedModule } from './tagFeed/tagFeed.module';
 import { YourFeedModule } from './yourFeed/yourFeed.module';
 import { GlobalFeedModule } from './globalFeed/globalFeed.module';
@@ -34,6 +35,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     YourFeedModule,
     TagFeedModule,
     StoreRouterConnectingModule.forRoot(),
+    ArticleModule,
   ],
   providers: [
     PersistanceService,
