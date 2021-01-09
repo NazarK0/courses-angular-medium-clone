@@ -4,7 +4,7 @@ import { GetFeedResponseInterface } from './../../types/getFeedResponse.interfac
 import { Observable, Subscription } from 'rxjs';
 import { getFeedAction } from './../../store/actions/getFeed.action';
 import { Store, select } from '@ngrx/store';
-import { Input, OnInit } from '@angular/core';
+import { Input, OnInit, OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { parseUrl, stringify } from 'query-string';
@@ -15,9 +15,9 @@ import { parseUrl, stringify } from 'query-string';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
-  @Input('apiUrl') apiUrlProps: string;
+  @Input('apiUrl') apiUrlProps!: string;
 
   isLoading$: Observable<boolean> = new Observable();
   error$: Observable<string | null> = new Observable();
@@ -65,6 +65,17 @@ export class FeedComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeValues();
     this.initializeListeners();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    // Add '${implements OnChanges}' to the class.
+    const isApiUrlChanged = !changes.apiUrlProps.firstChange
+      && changes.apiUrlProps.currentValue !== changes.apiUrlProps.previousValue;
+
+    if (isApiUrlChanged) {
+      this.fetchFeed();
+    }
   }
 
   ngOnDestroy(): void {
