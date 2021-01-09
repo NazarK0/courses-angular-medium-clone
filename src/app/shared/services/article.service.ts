@@ -1,6 +1,6 @@
-import { GetArticleResponseInterface } from './../types/getArticleResponse.interface';
+import { GetArticleResponseInterface } from '../types/getArticleResponse.interface';
 import { map } from 'rxjs/operators';
-import { ArticleInterface } from './../types/article.interface';
+import { ArticleInterface } from '../types/article.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';

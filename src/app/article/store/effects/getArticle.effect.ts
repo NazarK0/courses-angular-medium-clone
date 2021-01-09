@@ -1,6 +1,6 @@
 import { ArticleInterface } from './../../../shared/types/article.interface';
 import { switchMap, catchError, map } from 'rxjs/operators';
-import { ArticleService as SharedArticleService } from '../../../shared/services/atricle.service';
+import { ArticleService as SharedArticleService } from '../../../shared/services/article.service';
 import { getArticleAction, getArticleSuccessAction, getArticleFailureAction } from '../actions/getArticle.action';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';

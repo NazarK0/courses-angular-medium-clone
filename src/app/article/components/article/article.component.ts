@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { parseUrl, stringify } from 'query-string';
 import { combineLatest } from 'rxjs';
+import { deleteArticleAction } from '../../store/actions/deleteArticle.action';
 
 @Component({
   selector: 'mc-article',
@@ -70,5 +71,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
     // Called once, before the instance is destroyed.
     // Add 'implements OnDestroy' to the class.
     this.articleSubscription.unsubscribe();
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(deleteArticleAction({ slug: this.slug }));
   }
 }
