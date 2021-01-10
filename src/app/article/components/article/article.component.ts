@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { parseUrl, stringify } from 'query-string';
 import { combineLatest } from 'rxjs';
 import { deleteArticleAction } from '../../store/actions/deleteArticle.action';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
   selector: 'mc-article',
@@ -28,7 +29,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   article: ArticleInterface | null = null;
   articleSubscription: Subscription = new Subscription();
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(private store: Store<AppStateInterface>, private route: ActivatedRoute) {}
 
   initializeValues(): void {
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
