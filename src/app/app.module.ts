@@ -1,3 +1,4 @@
+import { UserProfileModule } from './userProfile/userProfile.module';
 import { SettingsModule } from './settings/settings.module';
 import { EditArticleModule } from './editArticle/editArticle.module';
 import { CreateArticleModule } from './createArticle/createArticle.module';
@@ -11,7 +12,6 @@ import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -42,6 +42,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     ArticleModule,
     EditArticleModule,
     SettingsModule,
+    UserProfileModule,
   ],
   providers: [
     PersistanceService,

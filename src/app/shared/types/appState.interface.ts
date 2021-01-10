@@ -1,3 +1,4 @@
+import { UserProfileStateInterface } from './../../userProfile/types/userProfileState.interface';
 import { SettingsStateInterface } from './../../settings/types/settingsState.interface';
 import { CreateArticleStateInterface } from './../../createArticle/types/createArticleState.interface';
 import { ArticleStateInterface } from './../../article/types/articleState.interface';
@@ -14,4 +15,5 @@ export interface AppStateInterface {
   createArticle: CreateArticleStateInterface;
   editArticle: EditArticleStateInterface;
   settings: SettingsStateInterface;
+  userProfile: UserProfileStateInterface;
 }
