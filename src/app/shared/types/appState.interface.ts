@@ -1,3 +1,4 @@
+import { CreateArticleStateInterface } from './../../createArticle/types/createArticleState.interface';
 import { ArticleStateInterface } from './../../article/types/articleState.interface';
 import { PopularTagStateInterface } from './../modules/popularTags/types/popularTagsState.interface';
 import { FeedStateInterface } from './../modules/feed/types/feedState.interface';
@@ -8,4 +9,5 @@ export interface AppStateInterface {
   feed: FeedStateInterface;
   popularTags: PopularTagStateInterface;
   article: ArticleStateInterface;
+  createArticle: CreateArticleStateInterface;
 }
