@@ -1,3 +1,4 @@
+import { SettingsStateInterface } from './../../settings/types/settingsState.interface';
 import { CreateArticleStateInterface } from './../../createArticle/types/createArticleState.interface';
 import { ArticleStateInterface } from './../../article/types/articleState.interface';
 import { PopularTagStateInterface } from './../modules/popularTags/types/popularTagsState.interface';
@@ -12,4 +13,5 @@ export interface AppStateInterface {
   article: ArticleStateInterface;
   createArticle: CreateArticleStateInterface;
   editArticle: EditArticleStateInterface;
+  settings: SettingsStateInterface;
 }

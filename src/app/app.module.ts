@@ -1,3 +1,4 @@
+import { SettingsModule } from './settings/settings.module';
 import { EditArticleModule } from './editArticle/editArticle.module';
 import { CreateArticleModule } from './createArticle/createArticle.module';
 import { ArticleModule } from './article/article.module';
@@ -40,6 +41,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     CreateArticleModule,
     ArticleModule,
     EditArticleModule,
+    SettingsModule,
   ],
   providers: [
     PersistanceService,
