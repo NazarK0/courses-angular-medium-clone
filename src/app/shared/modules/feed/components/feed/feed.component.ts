@@ -8,6 +8,7 @@ import { Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/cor
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { parseUrl, stringify } from 'query-string';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -28,7 +29,7 @@ export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   currentPage = 1;
 
   constructor(
-    private store: Store,
+    private store: Store<AppStateInterface>,
     private router: Router,
     private route: ActivatedRoute,
   ) {}

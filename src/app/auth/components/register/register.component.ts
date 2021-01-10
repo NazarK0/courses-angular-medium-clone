@@ -1,3 +1,4 @@
+import { map, filter } from 'rxjs/operators';
 import { BackendErrorsInterface } from './../../../shared/types/backendErrors.interface';
 import { RegisterRequestInterface } from './../../types/registerRequest.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
@@ -19,11 +20,11 @@ import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   isSubmitting$: Observable<boolean> = new Observable();
-  backendErrors$: Observable<BackendErrorsInterface | null> = new Observable();
+  backendErrors$: Observable<BackendErrorsInterface> = new Observable();
 
   constructor(
     private fb: FormBuilder,
-    private store: Store
+    private store: Store<AppStateInterface>
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
 
     this.backendErrors$ = this.store
       .pipe(
-        select(validationErrorsSelector)
+        select(validationErrorsSelector),
       );
   }
 

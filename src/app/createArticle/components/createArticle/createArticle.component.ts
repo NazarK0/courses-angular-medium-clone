@@ -5,6 +5,7 @@ import { ArticleInputInterface } from './../../../shared/types/articleInput.inte
 import { Component, OnInit } from '@angular/core';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
   selector: 'mc-create-article',
@@ -21,7 +22,7 @@ export class CreateArticleComponent implements OnInit {
   isSubmitting$!: Observable<boolean>;
   backendErrors$!: Observable<BackendErrorsInterface | null>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store<AppStateInterface>) {}
 
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));

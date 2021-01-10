@@ -4,6 +4,7 @@ import { getPopularTagsAction } from './../../store/actions/getPopularTags.actio
 import { Store, select } from '@ngrx/store';
 import { PopularTagType } from './../../../../types/popularTag.type';
 import { Component, Input, OnInit } from '@angular/core';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
   selector: 'mc-popular-tags',
@@ -17,14 +18,14 @@ export class PopularTagsComponent implements OnInit {
   error$: Observable<string | null> = new Observable<string | null>();
 
   constructor(
-    private store: Store,
+    private store: Store<AppStateInterface>,
 
   ) {}
 
   initializeValues(): void {
     this.popularTags$ = this.store.pipe(select(popularTagsSelector));
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
-    this.error$ = this.store.pipe(select(errorSelector))
+    this.error$ = this.store.pipe(select(errorSelector));
   }
 
   fetchData(): void {

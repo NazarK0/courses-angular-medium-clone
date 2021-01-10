@@ -24,7 +24,7 @@ export class EditArticleComponent implements OnInit {
 
 
   constructor(
-    private store: Store,
+    private store: Store<AppStateInterface>,
     private route: ActivatedRoute,
     ) {}
 
@@ -35,15 +35,24 @@ export class EditArticleComponent implements OnInit {
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
     this.initialValues$ = this.store.pipe(
       select(articleSelector),
-      filter<ArticleInterface>(Boolean),
-      map((article: ArticleInterface) => {
-        const { title, description, body, tagList } = article;
-        return {
-          title,
-          description,
-          body,
-          tagList,
-        };
+      filter<ArticleInterface | null>(Boolean),
+      map((article: ArticleInterface | null) => {
+        if (article) {
+          const { title, description, body, tagList } = article;
+          return {
+            title,
+            description,
+            body,
+            tagList,
+          };
+        } else {
+          return {
+            title: '',
+            description: '',
+            body: '',
+            tagList: [],
+          };
+        }
       }),
     );
   }

@@ -10,6 +10,7 @@ import { Store, select } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
   selector: 'mc-settings',
@@ -23,7 +24,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isSubmitting$!: Observable<boolean>;
   backendErrors$!: Observable<BackendErrorsInterface | null>;
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>) {}
 
   initializeForm(): void {
     const { image, username, bio, email } = this.currentUser;
@@ -40,10 +41,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
   initializeListeners(): void {
     this.currentUserSubscription = this.store.pipe(
       select(currentUserSelector),
-      filter(Boolean),
-    ).subscribe((currentUser: CurrentUserInterface) => {
-      this.currentUser = currentUser;
-      this.initializeForm();
+      filter<CurrentUserInterface | null>(Boolean),
+    ).subscribe((currentUser: CurrentUserInterface | null) => {
+      if (currentUser) {
+        this.currentUser = currentUser;
+        this.initializeForm();
+      }
     });
   }
 
@@ -65,7 +68,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     const currentUserInput: CurrentUserInputInterface = {
       ...this.currentUser,
       ...this.form.value,
-    }
+    };
+
     this.store.dispatch(updateCurrentUserAction({ currentUserInput }));
   }
 

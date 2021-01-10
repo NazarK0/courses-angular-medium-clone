@@ -2,7 +2,7 @@ import { CurrentUserInterface } from './../../../shared/types/currentUser.interf
 import { userProfileSelector } from './../../store/selectors';
 import { filter, map } from 'rxjs/operators';
 import { currentUserSelector } from './../../../auth/store/selectors';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { getUserProfileAction } from './../../store/actions/getUserProfile.action';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription, combineLatest } from 'rxjs';
@@ -35,13 +35,9 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   }
 
   initializeValues(): void {
-    const isFavorites = this.router.url.includes('favorites');
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
-    this.apiUrl = isFavorites
-      ? `/articles?favorited=${this.slug}`
-      : `/articles?atuhor=${this.slug}`;
     this.isCurrentUserProfile$ = combineLatest([
       this.store.pipe(select(currentUserSelector), filter<CurrentUserInterface | null>(Boolean)),
       this.store.pipe(select(userProfileSelector), filter<ProfileInterface | null>(Boolean)),
@@ -60,12 +56,24 @@ export class UserProfileComponent implements OnInit, OnDestroy{
         this.userProfile = userProfile;
       }
     });
+
+    this.route.params.subscribe((params: Params) => {
+      this.slug = params.slug;
+      this.fetchData();
+    });
+  }
+
+  getApiUrl(): string {
+    const isFavorites = this.router.url.includes('favorites');
+
+    return isFavorites
+      ? `/articles?favorited=${this.slug}`
+      : `/articles?atuhor=${this.slug}`;
   }
 
   ngOnInit(): void {
     this.initializeValues();
     this.initializeListeners();
-    this.fetchData();
   }
 
   ngOnDestroy(): void {

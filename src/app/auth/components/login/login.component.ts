@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
+    private store: Store<AppStateInterface>,
   ) {}
 
   initializeForm(): void {
