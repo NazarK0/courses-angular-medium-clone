@@ -1,7 +1,7 @@
 import { BackendErrorsInterface } from './../../shared/types/backendErrors.interface';
 import { CreateArticleStateInterface } from './../types/createArticleState.interface';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
 export const createArticleFeatureSelector = createFeatureSelector<
 AppStateInterface,
@@ -16,4 +16,4 @@ export const isSubmittingSelector: MemoizedSelector<AppStateInterface, boolean> 
 export const validationErrorsSelector: MemoizedSelector<AppStateInterface, BackendErrorsInterface | null> = createSelector(
   createArticleFeatureSelector,
   (state: CreateArticleStateInterface) => state.vaidationErrors
-)
+);

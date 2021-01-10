@@ -29,6 +29,6 @@ const createArticleReducer = createReducer(initialState,
   )
 );
 
-export function reducers(state: CreateArticleStateInterface, action: Action) {
+export function reducers(state: CreateArticleStateInterface, action: Action): CreateArticleStateInterface {
   return createArticleReducer(state, action);
 }

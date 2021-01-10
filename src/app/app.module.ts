@@ -1,3 +1,4 @@
+import { EditArticleModule } from './editArticle/editArticle.module';
 import { CreateArticleModule } from './createArticle/createArticle.module';
 import { ArticleModule } from './article/article.module';
 import { TagFeedModule } from './tagFeed/tagFeed.module';
@@ -38,6 +39,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     StoreRouterConnectingModule.forRoot(),
     CreateArticleModule,
     ArticleModule,
+    EditArticleModule,
   ],
   providers: [
     PersistanceService,
