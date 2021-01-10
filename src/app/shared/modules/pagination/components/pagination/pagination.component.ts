@@ -7,10 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  @Input('total') totalProps: number;
-  @Input('limit') limitProps: number;
-  @Input('currentPage') currentPageProps: number;
-  @Input('url') urlProps: string;
+  @Input('total') totalProps!: number;
+  @Input('limit') limitProps!: number;
+  @Input('currentPage') currentPageProps!: number;
+  @Input('url') urlProps!: string;
 
   pagesCount = 0;
   pages: number[] = [];

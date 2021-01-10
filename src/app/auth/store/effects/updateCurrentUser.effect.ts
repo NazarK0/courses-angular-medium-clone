@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
-export class updateCurrentUserEffect {
+export class UpdateCurrentUserEffect {
   constructor(
     private actions$: Actions,
     private authService: AuthService,

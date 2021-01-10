@@ -19,7 +19,7 @@ export const validationErrorsSelector: MemoizedSelector<AppStateInterface, Backe
   (authState: AuthStateInterface) => authState.validationErrors
 );
 
-export const isLoggedInSelector: MemorizedSelector<AppStateInterface, boolean> = createSelector(
+export const isLoggedInSelector: MemoizedSelector<AppStateInterface, boolean | null> = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.isLoggedIn
 );
@@ -27,9 +27,9 @@ export const isLoggedInSelector: MemorizedSelector<AppStateInterface, boolean> =
 export const isAnonymousSelector: MemoizedSelector<AppStateInterface, boolean> = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.isLoggedIn === false
-)
+);
 
 export const currentUserSelector: MemoizedSelector<AppStateInterface, CurrentUserInterface | null> = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.currentUser
-)
+);

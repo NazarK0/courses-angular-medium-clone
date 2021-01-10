@@ -1,3 +1,4 @@
+import { logoutAction } from './actions/sync.action';
 import { getCurrentUserAction, getCurrentUserSuccessAction, getCurrentUserFailureAction} from './actions/getCurrentUser.action';
 import { registerAction, registerFailureAction, registerSuccessAction } from './actions/register.action';
 import { loginAction, loginFailureAction, loginSuccessAction } from './actions/login.action';
@@ -86,6 +87,12 @@ const authReducer = createReducer(initialState,
       currentUser: action.currentUser,
     })
   ),
+  on(logoutAction,
+    (): AuthStateInterface => ({
+      ...initialState,
+      isLoggedIn: false,
+    })
+  )
 );
 
 export function reducer(state: AuthStateInterface, action: Action): AuthStateInterface {

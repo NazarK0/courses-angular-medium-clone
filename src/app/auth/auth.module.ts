@@ -1,4 +1,5 @@
-import { updateCurrentUserEffect } from './store/effects/updateCurrentUser.effect';
+import { LogoutEffect } from './store/effects/logout.effect';
+import { UpdateCurrentUserEffect } from './store/effects/updateCurrentUser.effect';
 import { GetCurrentUserEffect } from './store/effects/getCurrentUser.effect';
 import { LoginComponent } from './components/login/login.component';
 import { LoginEffect } from './store/effects/login.effect';
@@ -37,7 +38,8 @@ const routes: Routes = [
       RegisterEffect,
       LoginEffect,
       GetCurrentUserEffect,
-      updateCurrentUserEffect,
+      UpdateCurrentUserEffect,
+      LogoutEffect,
     ]),
     BackendErrorMessagesModule,
   ],

@@ -2,7 +2,6 @@ import { updateArticleFailureAction } from './../../editArticle/store/actions/up
 import { updateCurrentUserAction, updateCurrentUserSuccessAction } from './../../auth/store/actions/updateCurrentUser.action';
 import { createReducer, on, Action } from '@ngrx/store';
 import { SettingsStateInterface } from './../types/settingsState.interface';
-import { stat } from 'fs';
 
 const initialState: SettingsStateInterface = {
   isSubmitting: false,
