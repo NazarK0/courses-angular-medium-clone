@@ -9,16 +9,21 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class BackendErrorMessagesComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
-  @Input('backendErrors') backendErrorsProps: BackendErrorsInterface = {};
+  @Input('backendErrors') backendErrorsProps!: BackendErrorsInterface | null;
 
   errorMessages: string[] = [];
 
   ngOnInit(): void {
-    this.errorMessages = Object
+    if (this.backendErrorsProps) {
+      this.errorMessages = Object
       .keys(this.backendErrorsProps)
       .map((name: string) => {
-        const messages = this.backendErrorsProps[name].join(', ');
-        return `${name} ${messages}`;
-      })
+        if (this.backendErrorsProps) {
+          const messages = this.backendErrorsProps[name].join(', ');
+          return `${name} ${messages}`;
+        }
+        else { return ''; }
+      });
+    }
   }
 }

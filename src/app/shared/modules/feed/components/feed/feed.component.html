@@ -31,7 +31,7 @@
     </a>
   </div>
   <mc-pagination
-    [total]="(feed$ | async)?.articlesCount"
+    [total]="(feed$ | async)?.articlesCount || 0"
     [limit]="limit"
     [url]="baseUrl"
     [currentPage]="currentPage"

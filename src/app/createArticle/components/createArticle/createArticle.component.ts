@@ -27,7 +27,6 @@ export class CreateArticleComponent implements OnInit {
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
-    const t = 5;
   }
 
   onSubmit(articleInput: ArticleInputInterface): void {

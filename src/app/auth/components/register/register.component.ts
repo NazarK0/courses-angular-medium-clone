@@ -20,7 +20,7 @@ import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   isSubmitting$: Observable<boolean> = new Observable();
-  backendErrors$: Observable<BackendErrorsInterface> = new Observable();
+  backendErrors$: Observable<BackendErrorsInterface | null> = new Observable();
 
   constructor(
     private fb: FormBuilder,
